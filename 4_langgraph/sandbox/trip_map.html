@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.9.3/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.2.0/css/all.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_f15001ccfc62a2ee3a152c421f04d82c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+                .leaflet-container { font-size: 1rem; }
+            </style>
+
+            <style>html, body {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 0;
+            }
+            </style>
+
+            <style>#map {
+                position:absolute;
+                top:0;
+                bottom:0;
+                right:0;
+                left:0;
+                }
+            </style>
+
+            <script>
+                L_NO_TOUCH = false;
+                L_DISABLE_3D = false;
+            </script>
+
+        
+</head>
+<body>
+    
+    
+            <div class="folium-map" id="map_f15001ccfc62a2ee3a152c421f04d82c" ></div>
+        
+</body>
+<script>
+    
+    
+            var map_f15001ccfc62a2ee3a152c421f04d82c = L.map(
+                "map_f15001ccfc62a2ee3a152c421f04d82c",
+                {
+                    center: [40.7128, -74.006],
+                    crs: L.CRS.EPSG3857,
+                    ...{
+  "zoom": 12,
+  "zoomControl": true,
+  "preferCanvas": false,
+}
+
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_0367ffb1a1bf7697b79562b005af3dc7 = L.tileLayer(
+                "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {
+  "minZoom": 0,
+  "maxZoom": 19,
+  "maxNativeZoom": 19,
+  "noWrap": false,
+  "attribution": "\u0026copy; \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e contributors",
+  "subdomains": "abc",
+  "detectRetina": false,
+  "tms": false,
+  "opacity": 1,
+}
+
+            );
+        
+    
+            tile_layer_0367ffb1a1bf7697b79562b005af3dc7.addTo(map_f15001ccfc62a2ee3a152c421f04d82c);
+        
+    
+            var marker_486d0e1657e6ef58ec02e39d5b327dc9 = L.marker(
+                [26.9949013, 88.2853306],
+                {
+}
+            ).addTo(map_f15001ccfc62a2ee3a152c421f04d82c);
+        
+    
+            var icon_5a519c4441d7088b7f550c0ed16dd2ff = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "red",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_32cf800f49599787d79c09dcfd8cf42b = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_818b60c726b2d0b07a1926b2c59892c4 = $(`<div id="html_818b60c726b2d0b07a1926b2c59892c4" style="width: 100.0%; height: 100.0%;">                     <b>Tiger Hill</b><br>                     Tiger Hill, Darjeeling, West Bengal<br>                     <small>Stop #2</small>                     </div>`)[0];
+                popup_32cf800f49599787d79c09dcfd8cf42b.setContent(html_818b60c726b2d0b07a1926b2c59892c4);
+            
+        
+
+        marker_486d0e1657e6ef58ec02e39d5b327dc9.bindPopup(popup_32cf800f49599787d79c09dcfd8cf42b)
+        ;
+
+        
+    
+    
+            marker_486d0e1657e6ef58ec02e39d5b327dc9.bindTooltip(
+                `<div>
+                     Tiger Hill
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_486d0e1657e6ef58ec02e39d5b327dc9.setIcon(icon_5a519c4441d7088b7f550c0ed16dd2ff);
+            
+    
+            var marker_4dac38085b463dcdc444b3c1ef98911d = L.marker(
+                [27.0167011, 88.2471186],
+                {
+}
+            ).addTo(map_f15001ccfc62a2ee3a152c421f04d82c);
+        
+    
+            var icon_7389a25d49a3ac5a0f6c4f1c22fd4cbd = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "green",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_2a9eec448c00201fd0d2a230b8ddda60 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_609b1787b4be59c74c1a39f9438d5591 = $(`<div id="html_609b1787b4be59c74c1a39f9438d5591" style="width: 100.0%; height: 100.0%;">                     <b>Batasia Loop</b><br>                     Batasia Loop, Darjeeling, West Bengal<br>                     <small>Stop #3</small>                     </div>`)[0];
+                popup_2a9eec448c00201fd0d2a230b8ddda60.setContent(html_609b1787b4be59c74c1a39f9438d5591);
+            
+        
+
+        marker_4dac38085b463dcdc444b3c1ef98911d.bindPopup(popup_2a9eec448c00201fd0d2a230b8ddda60)
+        ;
+
+        
+    
+    
+            marker_4dac38085b463dcdc444b3c1ef98911d.bindTooltip(
+                `<div>
+                     Batasia Loop
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_4dac38085b463dcdc444b3c1ef98911d.setIcon(icon_7389a25d49a3ac5a0f6c4f1c22fd4cbd);
+            
+    
+            var marker_9e46cf778d9ae6d03fa4458012dc69de = L.marker(
+                [27.0380198, 88.2631555],
+                {
+}
+            ).addTo(map_f15001ccfc62a2ee3a152c421f04d82c);
+        
+    
+            var icon_42507a96b47711ea08c4b344481cfe08 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "purple",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_5409f98be5e36872e9ff9abc00d319b8 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_4d1d0f5d9ec709409a54c9f65b5a6d1b = $(`<div id="html_4d1d0f5d9ec709409a54c9f65b5a6d1b" style="width: 100.0%; height: 100.0%;">                     <b>Darjeeling Himalayan Railway</b><br>                     Darjeeling Railway Station, West Bengal<br>                     <small>Stop #4</small>                     </div>`)[0];
+                popup_5409f98be5e36872e9ff9abc00d319b8.setContent(html_4d1d0f5d9ec709409a54c9f65b5a6d1b);
+            
+        
+
+        marker_9e46cf778d9ae6d03fa4458012dc69de.bindPopup(popup_5409f98be5e36872e9ff9abc00d319b8)
+        ;
+
+        
+    
+    
+            marker_9e46cf778d9ae6d03fa4458012dc69de.bindTooltip(
+                `<div>
+                     Darjeeling Himalayan Railway
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_9e46cf778d9ae6d03fa4458012dc69de.setIcon(icon_42507a96b47711ea08c4b344481cfe08);
+            
+    
+            var marker_aa5287dfa5e407a068ee3f27fff37e34 = L.marker(
+                [27.0523425, 88.2691753],
+                {
+}
+            ).addTo(map_f15001ccfc62a2ee3a152c421f04d82c);
+        
+    
+            var icon_c28e458095aef864353fd0887b2af5e7 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "pink",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_657aa09ed36112343090af99c4677f64 = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_11ffa0b595df34dfa79e3f53a528197c = $(`<div id="html_11ffa0b595df34dfa79e3f53a528197c" style="width: 100.0%; height: 100.0%;">                     <b>Happy Valley Tea Estate</b><br>                     Lebong Cart Rd, Darjeeling, West Bengal<br>                     <small>Stop #7</small>                     </div>`)[0];
+                popup_657aa09ed36112343090af99c4677f64.setContent(html_11ffa0b595df34dfa79e3f53a528197c);
+            
+        
+
+        marker_aa5287dfa5e407a068ee3f27fff37e34.bindPopup(popup_657aa09ed36112343090af99c4677f64)
+        ;
+
+        
+    
+    
+            marker_aa5287dfa5e407a068ee3f27fff37e34.bindTooltip(
+                `<div>
+                     Happy Valley Tea Estate
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_aa5287dfa5e407a068ee3f27fff37e34.setIcon(icon_c28e458095aef864353fd0887b2af5e7);
+            
+    
+            var marker_bf347eb5138235ec32b5567815f64ff4 = L.marker(
+                [27.0448617, 88.267652],
+                {
+}
+            ).addTo(map_f15001ccfc62a2ee3a152c421f04d82c);
+        
+    
+            var icon_15ed0fcb4912d98c45513e4a0fee2ce9 = L.AwesomeMarkers.icon(
+                {
+  "markerColor": "gray",
+  "iconColor": "white",
+  "icon": "info-sign",
+  "prefix": "glyphicon",
+  "extraClasses": "fa-rotate-0",
+}
+            );
+        
+    
+        var popup_f56d6410edac5ec1aee778f2da7da58f = L.popup({
+  "maxWidth": 250,
+});
+
+        
+            
+                var html_fcf8aebbdf319a96e20f1391a40bd0a7 = $(`<div id="html_fcf8aebbdf319a96e20f1391a40bd0a7" style="width: 100.0%; height: 100.0%;">                     <b>Mall Road</b><br>                     Mall Road, Darjeeling, West Bengal<br>                     <small>Stop #8</small>                     </div>`)[0];
+                popup_f56d6410edac5ec1aee778f2da7da58f.setContent(html_fcf8aebbdf319a96e20f1391a40bd0a7);
+            
+        
+
+        marker_bf347eb5138235ec32b5567815f64ff4.bindPopup(popup_f56d6410edac5ec1aee778f2da7da58f)
+        ;
+
+        
+    
+    
+            marker_bf347eb5138235ec32b5567815f64ff4.bindTooltip(
+                `<div>
+                     Mall Road
+                 </div>`,
+                {
+  "sticky": true,
+}
+            );
+        
+    
+                marker_bf347eb5138235ec32b5567815f64ff4.setIcon(icon_15ed0fcb4912d98c45513e4a0fee2ce9);
+            
+    
+            map_f15001ccfc62a2ee3a152c421f04d82c.fitBounds(
+                [[26.9949013, 88.2471186], [27.0523425, 88.2853306]],
+                {}
+            );
+        
+    
+            var poly_line_0c7dd1546c7b4cb2f6c4fd208cfa09eb = L.polyline(
+                [[26.9949013, 88.2853306], [27.0167011, 88.2471186], [27.0380198, 88.2631555], [27.0523425, 88.2691753], [27.0448617, 88.267652]],
+                {"bubblingMouseEvents": true, "color": "gray", "dashArray": null, "dashOffset": null, "fill": false, "fillColor": "gray", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "noClip": false, "opacity": 0.5, "smoothFactor": 1.0, "stroke": true, "weight": 2}
+            ).addTo(map_f15001ccfc62a2ee3a152c421f04d82c);
+        
+    
+        var popup_c77fa0f0f86155645459f850b20376bf = L.popup({
+  "maxWidth": "100%",
+});
+
+        
+            
+                var html_38c44aee7b5bb538038e913005451bdb = $(`<div id="html_38c44aee7b5bb538038e913005451bdb" style="width: 100.0%; height: 100.0%;">Route</div>`)[0];
+                popup_c77fa0f0f86155645459f850b20376bf.setContent(html_38c44aee7b5bb538038e913005451bdb);
+            
+        
+
+        poly_line_0c7dd1546c7b4cb2f6c4fd208cfa09eb.bindPopup(popup_c77fa0f0f86155645459f850b20376bf)
+        ;
+
+        
+    
+</script>
+</html>
