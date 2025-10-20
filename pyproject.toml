@@ -9,6 +9,9 @@ dependencies = [
     "autogen-agentchat>=0.4.9.2",
     "autogen-ext[grpc,mcp,ollama,openai]>=0.4.9.2",
     "bs4>=0.0.2",
+    "bitsandbytes>=0.43.0",
+    "folium>=0.14.0",
+    "geopy>=2.4.0",
     "gradio>=5.22.0",
     "httpx>=0.28.1",
     "ipywidgets>=8.1.5",
@@ -24,6 +27,7 @@ dependencies = [
     "mcp[cli]>=1.5.0",
     "openai>=1.68.2",
     "openai-agents>=0.0.15",
+    "peft>=0.11.0",
     "playwright>=1.51.0",
     "plotly>=6.0.1",
     "polygon-api-client>=1.14.5",
@@ -37,7 +41,10 @@ dependencies = [
     "setuptools>=78.1.0",
     "smithery>=0.1.0",
     "speedtest-cli>=2.1.3",
+    "torch>=2.1.0",
+    "transformers>=4.40.0",
     "wikipedia>=1.4.0",
+    "accelerate>=0.27.0",
 ]
 
 [dependency-groups]
