@@ -181,3 +181,7 @@ cython_debug/
 # Ignore Accounts database in capstone project
 6_mcp/accounts.db
 6_mcp/memory/*.db
+
+5_RAG/knowledge-base
+PersonalKnowledgeWorker/amdocsKnowledgeBase
+PersonalKnowledgeWorker/__pycache__

@@ -2,21 +2,22 @@
 
 ## Overview
 
-This repository contains three advanced AI agent projects demonstrating different approaches to building intelligent conversational systems with tool integration, state management, and multi-agent patterns.
+This repository contains **five advanced AI projects** demonstrating different approaches to building intelligent conversational systems, ranging from simple tool integration to sophisticated multi-agent orchestration and retrieval-augmented generation (RAG) systems.
 
 ### 🔍 Quick Comparison
 
-| Feature | Career Agent | Sidekick Assistant | Dataset Generator |
-|---------|--------------|-------------------|-------------------|
-| **Primary Use** | Career chatbot | Research & automation | Data generation |
-| **Interface** | Gradio web UI | Gradio web UI | CLI (Command-line) |
-| **Architecture** | Simple tool integration | Multi-agent with evaluator | Iterative with validation |
-| **Key Capability** | Answer questions + record leads | Browse web, execute code, plan trips | Generate synthetic datasets |
-| **User Input** | Natural language chat | Natural language chat | Structured prompts |
-| **Output** | Conversational responses | Task completion + artifacts | JSON datasets (50 records) |
-| **Feedback Loop** | None | Evaluator retries | Quality-based regeneration |
-| **Deployment** | HuggingFace Spaces | Cloud/Docker | Local/Scheduled script |
-| **Complexity** | ⭐ Beginner | ⭐⭐⭐ Advanced | ⭐⭐ Intermediate |
+| Feature | Career Agent | Sidekick Assistant | Dataset Generator | Personal Knowledge Worker | RAG Insurance LLM |
+|---------|--------------|-------------------|-------------------|---------------------------|-------------------|
+| **Primary Use** | Career chatbot | Research & automation | Data generation | Knowledge base Q&A | Insurance knowledge Q&A |
+| **Interface** | Gradio web UI | Gradio web UI | CLI (Command-line) | Gradio web UI | Gradio web UI |
+| **Architecture** | Simple tool integration | Multi-agent with evaluator | Iterative with validation | RAG with image processing | RAG with vector store |
+| **Key Capability** | Answer questions + record leads | Browse web, execute code, plan trips | Generate synthetic datasets | Index personal knowledge + chat | Query insurance documents |
+| **User Input** | Natural language chat | Natural language chat | Structured prompts | Natural language chat | Natural language chat |
+| **Output** | Conversational responses | Task completion + artifacts | JSON datasets (50 records) | Chat responses with context | Answers from knowledge base |
+| **Knowledge Source** | LinkedIn PDF | Web/Wikipedia/Code | Generated | MHT files + images | Markdown documents |
+| **Feedback Loop** | None | Evaluator retries | Quality-based regeneration | Conversation memory | Conversation memory |
+| **Deployment** | HuggingFace Spaces | Cloud/Docker | Local/Scheduled script | Local/Docker | Local/Docker |
+| **Complexity** | ⭐ Beginner | ⭐⭐⭐ Advanced | ⭐⭐ Intermediate | ⭐⭐ Intermediate | ⭐ Beginner |
 
 ---
 
@@ -25,9 +26,11 @@ This repository contains three advanced AI agent projects demonstrating differen
 1. [Project 1: Career Conversation Agent (ChatWithPushNotifications)](#project-1-career-conversation-agent)
 2. [Project 2: Sidekick Multi-Agent Assistant](#project-2-sidekick-multi-agent-assistant)
 3. [Project 3: Synthetic Dataset Generator](#project-3-synthetic-dataset-generator)
-4. [Installation & Setup](#installation--setup)
-5. [Architecture Patterns](#architecture-patterns)
-6. [Deployment](#deployment)
+4. [Project 4: Personal Knowledge Worker](#project-4-personal-knowledge-worker)
+5. [Project 5: RAG Insurance LLM](#project-5-rag-insurance-llm)
+6. [Installation & Setup](#installation--setup)
+7. [Architecture Patterns](#architecture-patterns)
+8. [Deployment](#deployment)
 
 ---
 
@@ -545,6 +548,274 @@ class DatasetGeneratorState(TypedDict):
 
 ---
 
+## Project 4: Personal Knowledge Worker
+
+### What It Does
+
+A sophisticated RAG (Retrieval Augmented Generation) system that converts your personal knowledge base (OneNote exports, MHT files) into an intelligent AI chatbot. The system:
+
+- **Processes images** - Automatically analyzes and describes images using Azure OpenAI Vision API
+- **Extracts links** - Captures and indexes hyperlinks from your documents
+- **Creates vector embeddings** - Converts text chunks into searchable semantic vectors
+- **Enables smart search** - Uses semantic similarity to find relevant information
+- **Maintains conversation history** - Remembers context across multiple questions
+- **Caches intelligently** - Avoids redundant API calls through smart caching
+
+### Key Features
+
+✅ **Image Processing** - Azure OpenAI Vision automatically describes images in your notes  
+✅ **Smart Caching** - Processed images cached to avoid redundant API calls  
+✅ **RAG Architecture** - Vector embeddings for semantic search across your knowledge  
+✅ **Link Extraction** - Automatically captures hyperlinks from documents  
+✅ **Gradio Web UI** - Beautiful, responsive chat interface  
+✅ **Conversation Memory** - Maintains context across multiple queries  
+✅ **Offline Indexing** - Uses local HuggingFace embeddings (no external API for embeddings)  
+
+### Files
+
+```
+📁 PersonalKnowledgeWorker/
+├── main.py                  (Setup and initialization script)
+├── gradio_app.py           (Web interface launcher)
+├── config.py               (Configuration and Azure setup)
+├── image_processor.py      (Image extraction and AI description)
+├── chunk_creator.py        (Text chunking with enrichment)
+├── vector_store.py         (Vector store and conversation management)
+├── requirements.txt
+└── amdocsKnowledgeBase/    (Your knowledge base folder)
+    ├── Company.mht         (Your OneNote export)
+    ├── images_cache.pkl    (Generated cache)
+    └── knowledge_base_db/  (Generated vector store)
+```
+
+**📂 [View Project 4 Files →](./PersonalKnowledgeWorker/)**
+
+### Quick Start
+
+```bash
+# Navigate to project
+cd PersonalKnowledgeWorker
+
+# Install dependencies
+pip install -r requirements.txt
+
+# First time setup (processes images and builds vector store)
+python main.py
+
+# Launch web interface
+python gradio_app.py
+```
+
+### Environment Setup
+
+Create a `.env` file with:
+```
+AUTOX_API_KEY=...
+NTNET_USERNAME=...
+```
+
+### How It Works
+
+```
+Your MHT Knowledge Base
+    ↓
+Image Processing (Azure Vision)
+    ↓
+Text Chunking & Enrichment
+    ↓
+Vector Embeddings (HuggingFace)
+    ↓
+ChromaDB Vector Store
+    ↓
+Semantic Search + LLM
+    ↓
+Chat Response with Context
+```
+
+### Processing Flow
+
+1. **Image Extraction**: Scans MHT file for embedded images
+2. **Vision Analysis**: Sends to Azure OpenAI Vision API for descriptions
+3. **Caching**: Stores descriptions locally to avoid re-processing
+4. **Text Parsing**: Extracts text sections and HTML structure
+5. **Link Extraction**: Captures all hyperlinks from document
+6. **Chunk Creation**: Combines text with image descriptions
+7. **Embeddings**: Converts to vector embeddings using HuggingFace
+8. **Vector Store**: Indexes in ChromaDB for fast retrieval
+9. **Chat Interface**: Enables semantic search conversations
+
+### Performance Notes
+
+- First run: ~15-30 minutes (processes 150+ images)
+- Subsequent runs: Instant (uses cached descriptions)
+- Vector store persists to disk (no rebuild needed)
+- Supports multi-turn conversations with memory
+
+---
+
+## Project 5: RAG Insurance LLM
+
+### What It Does
+
+A comprehensive RAG system specifically designed for insurance company knowledge bases. This Jupyter notebook demonstrates how to:
+
+- **Load structured documents** - Processes employees, products, contracts, and company information
+- **Create semantic search** - Builds vector embeddings for intelligent retrieval
+- **Enable conversational Q&A** - Answers questions about company knowledge
+- **Visualize embeddings** - Explores knowledge distribution in 2D/3D space
+- **Maintain context** - Remembers conversation history for multi-turn Q&A
+- **Deploy with Gradio** - Web interface for easy access
+
+### Key Features
+
+✅ **Multi-Document Type Support** - Handles employees, products, contracts, company data  
+✅ **Semantic Search** - Uses vector embeddings for intelligent retrieval  
+✅ **Conversation Memory** - Maintains context across multiple queries  
+✅ **Document Visualization** - 2D/3D t-SNE plots of knowledge distribution  
+✅ **Gradio Chat UI** - Easy-to-use web interface  
+✅ **Azure OpenAI Integration** - Uses corporate-compatible LLM setup  
+✅ **HuggingFace Embeddings** - Local embeddings for privacy  
+✅ **Chroma Vector Database** - Persistent vector storage  
+
+### Files
+
+```
+📁 5_RAG/
+├── RAGInusranceLLM.ipynb        (Main notebook)
+└── knowledge-base/              (Knowledge base folder)
+    ├── company/                 (Company information)
+    ├── products/               (Product descriptions)
+    ├── employees/              (Employee profiles)
+    ├── contracts/              (Business contracts)
+    └── amdocsKnowledgeBase/    (Indexed data)
+```
+
+**📂 [View Project 5 Files →](./5_RAG/)**
+
+### Quick Start
+
+```bash
+# Navigate to project
+cd 5_RAG
+
+# Run the notebook
+jupyter notebook RAGInusranceLLM.ipynb
+
+# Or run it directly with Python
+python -m jupyter notebook RAGInusranceLLM.ipynb
+```
+
+### Environment Setup
+
+Create a `.env` file with:
+```
+AUTOX_API_KEY=...
+NTNET_USERNAME=...
+OPENAI_API_KEY=...  (if using OpenAI instead of Azure)
+```
+
+### Knowledge Base Structure
+
+The system indexes 4 document types:
+
+```
+📊 Company Knowledge
+├── 👥 Employees (12 profiles)
+│   └── Roles, career progression, performance ratings
+├── 📦 Products (4 offerings)
+│   └── Features, pricing, specifications
+├── 📜 Contracts (13 agreements)
+│   └── Terms, pricing, support details
+└── ℹ️ Company (Overview)
+    └── Mission, history, locations
+```
+
+### Example Queries
+
+```python
+# The system can answer questions like:
+
+"Who is the CEO of our company?"
+→ Avery Lancaster, Co-Founder & CEO
+
+"What are our main insurance products?"
+→ Carllm, Homellm, Markellm, Rellm
+
+"Who received the IIOTY award in 2023?"
+→ Maxine Thompson (Insurellm Innovator of the Year)
+
+"What are the key features of Rellm?"
+→ AI-powered risk assessment, Dynamic pricing, Instant claims...
+```
+
+### How It Works
+
+```
+Knowledge Base Files (Markdown)
+    ↓
+Document Loading & Chunking
+    ↓
+Text Splitting (1000 char chunks)
+    ↓
+HuggingFace Embeddings
+    ↓
+Chroma Vector Store (123 chunks)
+    ↓
+ConversationalRetrievalChain
+    ↓
+Query + Memory
+    ↓
+LLM Response with Retrieved Context
+```
+
+### Notebook Flow
+
+1. **Load Documents**: Reads all .md files from knowledge-base/
+2. **Split Text**: Creates 1000-char chunks with 200-char overlap
+3. **Create Embeddings**: Uses HuggingFace sentence-transformers model
+4. **Build Vector Store**: Indexes in ChromaDB (123 vectors × 384 dimensions)
+5. **Setup Retriever**: Configures k=25 for semantic search
+6. **Create Chain**: ConversationalRetrievalChain with memory
+7. **Visualize**: Optional 2D/3D t-SNE visualization
+8. **Chat**: Launch Gradio interface for Q&A
+
+### Vector Store Metrics
+
+```
+📈 Knowledge Base Statistics:
+- Total documents: 123 chunks
+- Vector dimensions: 384
+- Document types: 4 categories
+- Retrieval k: 25 (top-k similarity search)
+- Overlap: 200 characters between chunks
+```
+
+### Extending the System
+
+To add your own knowledge base:
+
+```python
+# 1. Create knowledge-base/ folder with subfolders
+# 2. Add .md files to appropriate folders
+# 3. Run the notebook cells in order
+# 4. The system automatically:
+#    - Discovers all .md files
+#    - Adds doc_type metadata
+#    - Creates embeddings
+#    - Builds searchable index
+```
+
+### Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| **Proxy errors** | Set NO_PROXY before creating HTTP clients |
+| **Import errors** | Run `uv sync` to install dependencies |
+| **Embedding errors** | Ensure HuggingFace model is downloaded |
+| **Low quality answers** | Try increasing k value or adjusting chunks |
+
+---
+
 ## Installation & Setup
 
 ### Prerequisites
@@ -614,7 +885,15 @@ Input → Generate → Evaluate → Feedback Loop → Regenerate or Accept → E
 
 **Quality-Focused:** Automatic evaluation with regeneration based on quality criteria
 
-### Pattern 4: State Management
+### Pattern 4: Retrieval Augmented Generation (RAG)
+
+```
+Knowledge Base → Chunking → Embeddings → Vector Store → Semantic Search → LLM → Response
+```
+
+**Context-Aware:** Grounds LLM responses in actual documents, reduces hallucinations
+
+### Pattern 5: State Management
 
 All projects use **LangChain State**:
 
@@ -686,6 +965,41 @@ RUN uv sync
 CMD ["python", "4_langgraph/DatasetGenerator.py"]
 ```
 
+### Personal Knowledge Worker → Local/Docker
+
+**Local Execution:**
+```bash
+cd PersonalKnowledgeWorker
+python main.py          # Setup and indexing
+python gradio_app.py    # Launch web interface
+```
+
+**Docker Deployment:**
+```dockerfile
+FROM python:3.12
+WORKDIR /app
+COPY . .
+RUN uv sync
+CMD ["python", "PersonalKnowledgeWorker/gradio_app.py"]
+```
+
+### RAG Insurance LLM → Local/Jupyter/Docker
+
+**Jupyter Notebook:**
+```bash
+cd 5_RAG
+jupyter notebook RAGInusranceLLM.ipynb
+```
+
+**Docker Deployment:**
+```dockerfile
+FROM python:3.12
+WORKDIR /app
+COPY . .
+RUN uv sync
+CMD ["jupyter", "notebook", "5_RAG/RAGInusranceLLM.ipynb", "--ip=0.0.0.0", "--allow-root"]
+```
+
 ---
 
 ## Key Technologies
@@ -700,6 +1014,9 @@ CMD ["python", "4_langgraph/DatasetGenerator.py"]
 | **Geopy** | Address geocoding |
 | **Azure OpenAI** | LLM with corporate proxy support |
 | **Pydantic** | Structured outputs & validation |
+| **ChromaDB** | Vector database for embeddings |
+| **HuggingFace Transformers** | Local embedding models |
+| **t-SNE** | Dimensionality reduction for visualization |
 
 ---
 
@@ -714,6 +1031,10 @@ CMD ["python", "4_langgraph/DatasetGenerator.py"]
 | **Pushover notifications not sending** | Verify `PUSHOVER_USER` and `PUSHOVER_TOKEN` in `.env` |
 | **Dataset Generator JSON parse error** | AI output may include markdown formatting - check regex extraction in code |
 | **Low quality scores repeatedly** | Provide more specific example data structure or detailed use case description |
+| **RAG: Vector store not found** | Run `python main.py` (Personal KW) or notebook cells in order (Insurance LLM) |
+| **RAG: Image processing timeout** | First run takes 15-30 min for 150+ images; subsequent runs use cache |
+| **RAG: Poor search results** | Increase `k` parameter for retrieval or provide more specific queries |
+| **RAG: Out of memory errors** | Reduce chunk size or embedding batch size in config |
 
 ---
 
@@ -732,6 +1053,8 @@ CMD ["python", "4_langgraph/DatasetGenerator.py"]
   - `4_langgraph/sidekick.py` - Multi-agent orchestration
   - `4_langgraph/sidekick_tools.py` - Custom tool implementations
   - `4_langgraph/DatasetGenerator.py` - Complete iterative generation system
+  - `PersonalKnowledgeWorker/main.py` - Personal Knowledge Worker setup
+  - `5_RAG/RAGInusranceLLM.ipynb` - RAG Insurance LLM notebook
 
 - **Notebooks:**
   - `4_langgraph/3_lab3.ipynb` - Browser automation intro
