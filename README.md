@@ -1,4 +1,4 @@
-# ChatWithMeAgent: AI Agent Projects Suite
+# AI Agent Projects Suite
 
 ## Overview
 
